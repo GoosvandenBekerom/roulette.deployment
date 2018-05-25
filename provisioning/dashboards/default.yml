@@ -1,4 +1,4 @@
-- name: 'micrometer'
+- name: 'default'
   org_id: 1
   folder: ''
   type: 'file'
