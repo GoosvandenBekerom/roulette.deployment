@@ -1,0 +1,9 @@
+version: '3'
+services:
+
+  dealer:
+    image: roulette/dealer:latest
+    build:
+      context: .
+      args:
+        PROJECT_PATH: ./roulette.dealer
