@@ -22,6 +22,7 @@ services:
 
   dealer:
     image: roulette/dealer:latest
+    restart: always
     build:
       context: .
       args:
@@ -35,6 +36,7 @@ services:
 
   monitor:
     image: roulete/monitor:latest
+    restart: always
     build:
       context: .
       args:
@@ -42,30 +44,31 @@ services:
     environment:
       SPRING_PROFILES_ACTIVE: docker-compose
     depends_on:
-      - mysql
       - rabbitmq
+      - mysql
     ports:
       - 8081:8080
 
   prometheus:
     image: prom/prometheus
+    restart: always
     volumes:
       - ./prometheus.yml:/etc/prometheus/prometheus.yml
       - prometheus-data:/prometheus
     ports:
       - 9090:9090
 
-
-  # grafana:
-  #   image: grafana/grafana
-  #   volumes: 
-  #     - grafana-data:/var/lib/grafana
-  #     - ./dashboards:/var/lib/grafana/dashboards
-  #     - ./provisioning:/etc/grafana/provisioning/
-  #   ports:
-  #     - 3000:3000
+  grafana:
+    image: grafana/grafana
+    restart: always
+    volumes: 
+      - grafana-data:/var/lib/grafana
+      - ./dashboards:/var/lib/grafana/dashboards
+      - ./provisioning:/etc/grafana/provisioning/
+    ports:
+      - 3000:3000
 
 volumes:
   prometheus-data:
-  # grafana-data:
+  grafana-data:
   mysql-data:
