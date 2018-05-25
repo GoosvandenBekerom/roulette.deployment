@@ -1,9 +1,71 @@
 version: '3'
 services:
 
+  mysql:
+    image: mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: roulette
+    volumes:
+      - mysql-data:/var/lib/mysql
+    ports: 
+      - 3306:3306
+
+  rabbitmq:
+    image: rabbitmq:3.7-management-alpine
+    hostname: rabbitmq
+    restart: always
+    ports:
+      - 5672:5672
+      - 15672:15672
+
   dealer:
     image: roulette/dealer:latest
     build:
       context: .
       args:
         PROJECT_PATH: ./roulette.dealer
+    environment:
+      SPRING_PROFILES_ACTIVE: docker-compose
+    depends_on:
+      - rabbitmq
+    ports:
+      - 8080:8080
+
+  monitor:
+    image: roulete/monitor:latest
+    build:
+      context: .
+      args:
+        PROJECT_PATH: ./roulette.monitor
+    environment:
+      SPRING_PROFILES_ACTIVE: docker-compose
+    depends_on:
+      - mysql
+      - rabbitmq
+    ports:
+      - 8081:8080
+
+  prometheus:
+    image: prom/prometheus
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus-data:/prometheus
+    ports:
+      - 9090:9090
+
+
+  # grafana:
+  #   image: grafana/grafana
+  #   volumes: 
+  #     - grafana-data:/var/lib/grafana
+  #     - ./dashboards:/var/lib/grafana/dashboards
+  #     - ./provisioning:/etc/grafana/provisioning/
+  #   ports:
+  #     - 3000:3000
+
+volumes:
+  prometheus-data:
+  # grafana-data:
+  mysql-data:

@@ -1,3 +1,6 @@
 [submodule "roulette.dealer"]
 	path = roulette.dealer
 	url = https://github.com/GoosvandenBekerom/roulette.dealer.git
+[submodule "roulette.monitor"]
+	path = roulette.monitor
+	url = https://github.com/GoosvandenBekerom/roulette.monitor.git
