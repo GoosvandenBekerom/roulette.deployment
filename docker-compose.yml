@@ -63,7 +63,7 @@ services:
     depends_on:
       - "rabbitmq"
     ports:
-      - "9999:9419"
+      - 9999:9419
     environment:
       RABBIT_URL: "http://rabbitmq:15672"
       PUBLISH_PORT: "9419"
