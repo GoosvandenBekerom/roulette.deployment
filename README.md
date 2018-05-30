@@ -31,6 +31,7 @@ In onderstaand diagram breng ik de globale architectuur in kaart.
 
 #### Berichten
 Om bovenstaande architectuur werkelijkheid te maken heb ik de volgende berichten gebruikt:
+
 | Bericht | Data 
 | ------- | ------ 
 | nieuwe speler  | naam 
