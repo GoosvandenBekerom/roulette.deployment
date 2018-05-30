@@ -31,15 +31,15 @@ In onderstaand diagram breng ik de globale architectuur in kaart.
 
 #### Berichten
 Om bovenstaande architectuur werkelijkheid te maken heb ik de volgende berichten gebruikt:
-| Bericht | Data
-| ------- | ------
-| nieuwe speler  | naam
-| inkopen        | speler, hoeveelheid
-| inzetten       | speler, hoeveelheid, type inzet, (optioneel: nummers)
-| inzet status   | open/gesloten
-| resultaat      | nummer, kleur
-| speler / chips | speler, hoeveelheid
-| foutmelding    | bericht, context, speler
+| Bericht | Data 
+| ------- | ------ 
+| nieuwe speler  | naam 
+| inkopen        | speler, hoeveelheid 
+| inzetten       | speler, hoeveelheid, type inzet, (optioneel: nummers) 
+| inzet status   | open/gesloten 
+| resultaat      | nummer, kleur 
+| speler / chips | speler, hoeveelheid 
+| foutmelding    | bericht, context, speler 
 
 Hieronder is te zien hoe deze berichten er uitzien in de Google Protocol Buffers definitie.
 
